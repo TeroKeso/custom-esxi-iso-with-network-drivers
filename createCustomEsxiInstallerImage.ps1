@@ -45,20 +45,20 @@ Add-EsxSoftwareDepot .\ESXi-7.0.1-16850804-standard.zip
 ##############################################################################
 
 # Get community network driver 
-Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community-network-driver/Net-Community-Driver_1.2.0.0-1vmw.700.1.0.15843807_18028830.zip -OutFile Net-Community-Driver_1.2.0.0-1vmw.700.1.0.15843807_18028830.zip
+Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community-network-driver/Net-Community-Driver_1.2.2.0-1vmw.700.1.0.15843807_18835109.zip -OutFile Net-Community-Driver_1.2.2.0-1vmw.700.1.0.15843807_18835109.zip
 
 # Get USB NIC driver
 Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/USBNND/ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip -OutFile ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip
 
 # Get Community NVMe Driver for ESXi
-Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community-nvme-driver/nvme-community-driver_1.0.1.0-3vmw.700.1.0.15843807-component-18902434.zip
+Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community-nvme-driver/nvme-community-driver_1.0.1.0-3vmw.700.1.0.15843807-component-18902434.zip -OutFile nvme-community-driver_1.0.1.0-3vmw.700.1.0.15843807-component-18902434.zip
 
 ##############################################################################
 # Add the additional drivers
 ##############################################################################
 
 # Add community network driver
-Add-EsxSoftwareDepot .\Net-Community-Driver_1.2.0.0-1vmw.700.1.0.15843807_18028830.zip
+Add-EsxSoftwareDepot .\Net-Community-Driver_1.2.2.0-1vmw.700.1.0.15843807_18835109.zip
 
 # Add USB NIC driver
 Add-EsxSoftwareDepot .\ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip
