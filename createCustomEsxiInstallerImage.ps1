@@ -50,6 +50,9 @@ Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community
 # Get USB NIC driver
 Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/USBNND/ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip -OutFile ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip
 
+# Get Community NVMe Driver for ESXi
+Invoke-WebRequest -Uri https://download3.vmware.com/software/vmw-tools/community-nvme-driver/nvme-community-driver_1.0.1.0-3vmw.700.1.0.15843807-component-18902434.zip
+
 ##############################################################################
 # Add the additional drivers
 ##############################################################################
@@ -60,13 +63,15 @@ Add-EsxSoftwareDepot .\Net-Community-Driver_1.2.0.0-1vmw.700.1.0.15843807_180288
 # Add USB NIC driver
 Add-EsxSoftwareDepot .\ESXi701-VMKUSB-NIC-FLING-40599856-component-17078334.zip
 
+# Get Community NVMe Driver for ESXi
+Add-EsxSoftwareDepot .nvme-community-driver_1.0.1.0-3vmw.700.1.0.15843807-component-18902434.zip
 
 ##############################################################################
 # Create new installation media profile and add the additional drivers to it
 ##############################################################################
 
 # Create new, custom profile
-New-EsxImageProfile -CloneProfile "ESXi-7.0.1-16850804-standard" -name "ESXi-7.0.1-16850804-standard-ASRock" -Vendor "jonamiki.com"
+New-EsxImageProfile -CloneProfile "ESXi-7.0.1-16850804-standard" -name "ESXi-7.0.1-16850804-standard-ASRock" -Vendor "Tero.local"
 
 # Optionally remove existing driver package (example for ne1000)
 #Remove-EsxSoftwarePackage -ImageProfile "ESXi-7.0.1-16850804-standard-ASRock" -SoftwarePackage "ne1000"
@@ -76,6 +81,9 @@ Add-EsxSoftwarePackage -ImageProfile "ESXi-7.0.1-16850804-standard-ASRock" -Soft
 
 # Add USB NIC driver package to custom profile
 Add-EsxSoftwarePackage -ImageProfile "ESXi-7.0.1-16850804-standard-ASRock" -SoftwarePackage "vmkusb-nic-fling"
+
+# Add Community NVMe Driver for ESXi
+Add-EsxSoftwarePackage -ImageProfile "ESXi-7.0.1-16850804-standard-ASRock" -SoftwarePackage "nvme-community"
 
 ##############################################################################
 # Export the custom profile to ISO
